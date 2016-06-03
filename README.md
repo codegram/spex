@@ -100,8 +100,8 @@ Spex.conforms?(&Integer.is_odd/1, 3)
 
 ### Map specs
 
-Specs really shine when they can use to describe arbitrarily nested maps. Map
-specs to the rescue:
+Specs really shine when they can describe arbitrarily nested maps. Map specs to
+the rescue:
 
 ```elixir
 Spex.conforms?(%{person: %{age: fn(x) -> x > 21, name: &Kernel.is_string/1}},
