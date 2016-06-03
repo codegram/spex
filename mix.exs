@@ -6,7 +6,7 @@ defmodule Spex.Mixfile do
   def project do
     [app: :spex,
      version: @version,
-     elixir: "~> 1.2",
+     elixir: "~> 1.1",
      description: "Validate your Elixir values against value-based specs",
      consolidate_protocols: Mix.env != :test,
      package: package,

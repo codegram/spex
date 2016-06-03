@@ -1,4 +1,4 @@
-# Spex
+# Spex [![Build Status](https://travis-ci.org/codegram/spex.svg?branch=master)](https://travis-ci.org/codegram/spex)
 
 Spex helps you validate your values against value-based schemas.
 
