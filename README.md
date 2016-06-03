@@ -128,6 +128,21 @@ Spex.conforms?({3, fn(x) -> x > 3 end}, {1, 4})
 # => false
 ```
 
+### Non-nil specs
+
+Sometimes we don't care what a value is, as long as it is non-nil. `any` is just
+for that:
+
+```elixir
+use Spex.DSL
+
+Spex.conforms?(any, 3)
+# => true
+
+Spex.conforms?(any, nil)
+# => false
+```
+
 ### Optional specs
 
 Sometimes we want to validate a value allowing it to be nil. `optional` is what

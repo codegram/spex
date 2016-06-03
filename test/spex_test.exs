@@ -32,6 +32,11 @@ defmodule SpexTest do
     refute Spec.conforms?(optional(3), 4)
   end
 
+  test "any() validates any non-nil value" do
+    assert Spec.conforms?(any(), 3)
+    refute Spec.conforms?(any(), nil)
+  end
+
   test "simple map specs validate maps" do
     assert Spec.conforms?(%{foo: :bar}, %{foo: :bar})
     refute Spec.conforms?(%{foo: :bar}, %{bar: :bar})
