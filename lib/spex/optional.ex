@@ -7,7 +7,6 @@ defmodule Spex.Optional do
 end
 
 defimpl Spex.Spec, for: Spex.Optional do
-  def conforms?(%Spex.Optional{spec: spec}, value) do
-    Kernel.is_nil(value) or Spex.Spec.conforms?(spec, value)
-  end
+  def conforms?(%Spex.Optional{spec: spec}, nil), do: true
+  def conforms?(%Spex.Optional{spec: spec}, value), do: Spex.Spec.conforms?(spec, value)
 end

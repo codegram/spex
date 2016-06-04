@@ -7,7 +7,6 @@ defmodule Spex.Any do
 end
 
 defimpl Spex.Spec, for: Spex.Any do
-  def conforms?(_, value) do
-    !Kernel.is_nil(value)
-  end
+  def conforms?(_, nil), do: false
+  def conforms?(_, value), do: true
 end
