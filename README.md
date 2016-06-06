@@ -98,6 +98,21 @@ Spex.conforms?(&Integer.is_odd/1, 3)
 # => true
 ```
 
+For type predicates, there's sugar on top of `&Kernel.is_x`:
+
+```elixir
+use Spex.DSL
+
+Spex.conforms?(number, 3)
+# => true
+Spex.conforms?(binary, "foo")
+# => true
+Spex.conforms?(string, "foo") # binary/0 and string/0 are synonms
+# => true
+Spex.conforms?(bitlist, <<3, 4>>)
+# => true
+```
+
 ### Map specs
 
 Specs really shine when they can describe arbitrarily nested maps. Map specs to

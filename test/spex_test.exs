@@ -75,6 +75,19 @@ defmodule SpexTest do
     refute Spec.conforms?({3, &Integer.is_even/1}, {3, 3})
   end
 
+  test "type predicates are sugar on &Kernel.is_x/1 functions" do
+    assert Spec.conforms?(atom, :foo)
+    assert Spec.conforms?(binary, "foo")
+    assert Spec.conforms?(string, "foo")
+    assert Spec.conforms?(bitstring, <<3, 3>>)
+    assert Spec.conforms?(boolean, true)
+    assert Spec.conforms?(float, 3.4)
+    assert Spec.conforms?(function, &Integer.is_even/2)
+    assert Spec.conforms?(integer, 4)
+    assert Spec.conforms?(list, [1, 2])
+    assert Spec.conforms?(map, %{})
+  end
+
   test "validate/2 checks conformance to a spec" do
     assert {:ok, 3} = Spex.validate(3, 3)
     assert {:error, _} = Spex.validate(4, 3)
