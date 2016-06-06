@@ -15,7 +15,7 @@ defimpl Spex.Spec, for: Function do
 end
 
 defimpl Spex.Spec, for: Map do
-  def conforms?(m, value) do
+  def conforms?(m, value) when Kernel.is_map(value) do
     Enum.reduce(m, true, fn({k, spec}, acc) ->
       acc and case k do
                 %Spex.Optional{spec: inner_key} -> !Map.has_key?(value, inner_key) || Spex.Spec.conforms?(spec, value[inner_key])
@@ -23,6 +23,8 @@ defimpl Spex.Spec, for: Map do
               end
     end)
   end
+
+  def conforms?(_, _), do: false
 end
 
 defimpl Spex.Spec, for: Tuple do

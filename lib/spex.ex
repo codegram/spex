@@ -13,7 +13,9 @@ defmodule Spex do
     if Spec.conforms?(spec, value) do
       {:ok, value}
     else
-      {:error, "Value doesn't conform to spec: \n\nValue: #{value}\n\nSpec: #{spec}\n"}
+      iv = inspect value
+      is = inspect spec
+      {:error, "Value doesn't conform to spec: \n\nValue: #{iv}\n\nSpec: #{is}\n"}
     end
   end
 

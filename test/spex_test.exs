@@ -2,7 +2,6 @@ defmodule SpexTest do
   use ExUnit.Case
   doctest Spex
 
-  import Spex
   alias Spex.Spec
   use Spex.DSL
 
@@ -40,6 +39,7 @@ defmodule SpexTest do
   test "simple map specs validate maps" do
     assert Spec.conforms?(%{foo: :bar}, %{foo: :bar})
     refute Spec.conforms?(%{foo: :bar}, %{bar: :bar})
+    refute Spec.conforms?(%{foo: :bar}, 3)
   end
 
   test "recursive map specs validate nested maps" do
@@ -72,6 +72,10 @@ defmodule SpexTest do
   test "validate/2 checks conformance to a spec" do
     assert {:ok, 3} = Spex.validate(3, 3)
     assert {:error, _} = Spex.validate(4, 3)
+  end
+
+  test "validate/2 can inspect complex values in errors" do
+    assert {:error, _} = Spex.validate(%{foo: "bar"}, 3)
   end
 
   test "validate!/2 asserts conformance to a spec" do
