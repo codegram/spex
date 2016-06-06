@@ -47,6 +47,12 @@ defmodule SpexTest do
     refute Spec.conforms?(%{foo: %{bar: 3}}, %{foo: %{bar: 4}})
   end
 
+  test "generic map specs validate maps in terms of keys and values" do
+    assert Spec.conforms?(map(&Kernel.is_atom/1, &Integer.is_even/1), %{foo: 8, bar: 10})
+    refute Spec.conforms?(map(&Kernel.is_atom/1, &Integer.is_even/1), %{foo: 3})
+    refute Spec.conforms?(map(&Kernel.is_atom/1, &Integer.is_even/1), %{"foo" => 10})
+  end
+
   test "map specs can have optional values" do
     assert Spec.conforms?(%{foo: optional(3)}, %{foo: nil})
     refute Spec.conforms?(%{foo: optional(3)}, %{})

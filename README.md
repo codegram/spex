@@ -113,6 +113,19 @@ Spex.conforms?(%{person: %{age: fn(x) -> x > 21, name: &Kernel.is_string/1}},
 # => false
 ```
 
+If you're not interested in the shape of the map, but just more generically its
+keys and values, you can use `map`:
+
+```elixir
+Spex.conforms?(map(&Kernel.is_atom/1, &Integer.is_even/1),
+               %{elapsed: 120, remaining: 90})
+# => true
+
+Spex.conforms?(map(&Kernel.is_atom/1, &Integer.is_even/1),
+               %{elapsed: 3, remaining: 90})
+# => false
+```
+
 ### Tuple specs
 
 Tuple specs work pretty much like you'd expect:
